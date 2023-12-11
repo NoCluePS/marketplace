@@ -84,3 +84,5 @@ export const customSelectStyles = {
     color: "white",
   }),
 };
+
+export const LAST_UPDATE = new Date('2023-12-11');

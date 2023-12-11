@@ -44,7 +44,7 @@ export const Market = () => {
     };
 
     const fetchCoins = async () => {
-      const dluxData = {
+      const dlux = {
         name: "DLUX",
         image: {
           large: "https://www.dlux.io/img/dlux-hive-logo-alpha.svg",
@@ -56,7 +56,7 @@ export const Market = () => {
         },
       };
 
-      const { data: hiveData } = await axios.get(
+      const { data: hive } = await axios.get(
         "https://api.coingecko.com/api/v3/coins/hive",
         {
           headers: {
@@ -64,7 +64,7 @@ export const Market = () => {
           },
         }
       );
-      const { data: hbdData } = await axios.get(
+      const { data: hbd } = await axios.get(
         "https://api.coingecko.com/api/v3/coins/hive_dollar",
         {
           headers: {
@@ -74,10 +74,10 @@ export const Market = () => {
       );
 
       axios.get(`${apiLink}dex`).then(({ data }) => {
-        dluxData.market_data.current_price.usd =
-          data.markets.hive.tick * hiveData.market_data.current_price.usd;
+        dlux.market_data.current_price.usd =
+          data.markets.hive.tick * hive.market_data.current_price.usd;
 
-        setCoins([hiveData, dluxData, hbdData]);
+        setCoins([hive, dlux, hbd]);
       });
     };
 
